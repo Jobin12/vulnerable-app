@@ -17,9 +17,7 @@ pipeline {
               snyk auth ${env.SNYK_TOKEN}
               snyk code test --sarif-file-output=synk_report.sarif || echo 'Issues Found'
               """
-            withWarnings {
-              scanForWarnings 'synk_report.sarif'
-            }
+            recordIssues tool: sarif(pattern: 'synk_report.sarif')
           }
         }
       }
