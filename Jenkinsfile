@@ -23,5 +23,17 @@ pipeline {
       }
     }
 
+    stage('SonarQube Scan') {
+      steps {
+       withCredentials([string(credentialsId: 'sonar_token', variable: 'SONAR_TOKEN')]) {
+        script {
+          sh """
+            export SONAR_TOKEN=${env.SONAR_TOKEN}
+            mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=vulnerable-app_vulnerable-app
+          """
+        }
+       } 
+      }
+    }
   }
 }
