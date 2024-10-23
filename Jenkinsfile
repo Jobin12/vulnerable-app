@@ -11,8 +11,13 @@ pipeline {
 
     stage('Snyk DeepCode') {
       steps {
-        script {
-          sh 'snyk code test --sarif'
+        withCredentials([string(credentialsId: 'snyk_token', variable: 'SNYK_TOKEN')]) {
+          script {
+            sh """
+              snyk auth ${env.SNYK_TOKEN}
+              snyk code test --sarif
+              """
+          }
         }
       }
     }
