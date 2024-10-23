@@ -12,7 +12,7 @@ pipeline {
     stage('Snyk DeepCode') {
       steps {
         script {
-          sh 'ls'
+          sh 'snyk code test --sarif'
         }
       }
     }
