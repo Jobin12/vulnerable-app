@@ -1,4 +1,4 @@
-// pipeline trigger
+// pipeline trigger - test
 pipeline {
   agent any
 
