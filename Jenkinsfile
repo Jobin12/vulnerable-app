@@ -9,6 +9,16 @@ pipeline {
       }
     }
 
+    stage ('AWS CodeGuru Security') {
+      steps {
+        script {
+          sh """
+            ./run_codeguru_security.sh vulnerable-app . us-east-1
+          """
+        }
+      }
+    }
+
     stage('Snyk DeepCode') {
       steps {
         withCredentials([string(credentialsId: 'snyk_token', variable: 'SNYK_TOKEN')]) {
