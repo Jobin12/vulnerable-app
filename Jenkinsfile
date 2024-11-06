@@ -15,7 +15,7 @@ pipeline {
         script {
           sh """
             chmod +x run_codeguru_security.sh
-            ./run_codeguru_security.sh vulnerable-app . us-east-1
+            bash run_codeguru_security.sh vulnerable-app . us-east-1
           """
         }
       }
