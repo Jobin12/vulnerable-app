@@ -14,6 +14,7 @@ pipeline {
       steps {
         script {
           sh """
+            chmod +x run_codeguru_security.sh
             ./run_codeguru_security.sh vulnerable-app . us-east-1
           """
         }
